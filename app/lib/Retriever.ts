@@ -1,11 +1,24 @@
 async function get(dataPath: string): Promise<any> {
 
-    const fetchingURL = `https://${process.env.FIREBASE_REALTIME_DATABASE_ID}.firebaseio.com/${dataPath}.json`;
+    const fetchingURL = `https://${process.env.NEXT_PUBLIC_FIREBASE_REALTIME_DATABASE_ID}.firebaseio.com/${dataPath}.json`;
 
-    const data = await fetch(fetchingURL).then((res) => res.json())
+    const data = await fetch(fetchingURL, {
+        next: {
+            revalidate: 0,
+        }
+    }).then((res) => res.json())
 
     return data;
 }
+
+export type ProjectType = {
+    title: string,
+    summary: string | null
+    preview_url: string | null,
+    project_url: string | null,
+    demo_url: string | null,
+    technologies: Array<string> | null
+};
 
 type RetrieverStruct = {
     "name": Promise<string>,
@@ -26,14 +39,7 @@ type RetrieverStruct = {
         }
         responsibilities: Array<string>,
     }>>,
-    "projects": Promise<Array<{
-        title: string,
-        summary: string | null
-        preview_url: string | null,
-        project_url: string | null,
-        demo_url: string | null,
-        technologies: Array<string> | null
-    }>>,
+    "projects": Promise<Array<ProjectType>>
 };
 
 export default <RetrieverStruct>{
