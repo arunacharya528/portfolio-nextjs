@@ -1,5 +1,6 @@
-import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
+import { cn } from "@/lib/utils";
+import { FaEnvelope } from "react-icons/fa";
+import { FaGithubAlt, FaLinkedinIn } from "react-icons/fa6";
 
 export type IconStruct = {
   label: string;
@@ -9,20 +10,20 @@ export type IconStruct = {
 const icons = [
   {
     label: "GitHub",
-    icon: <FaGithub />,
+    icon: (className?: string) => <FaGithubAlt className={cn(className)} />,
   },
   {
     label: "LinkedIn",
-    icon: <FaLinkedin />,
+    icon: (className?: string) => <FaLinkedinIn className={cn(className)} />,
   },
   {
     label: "Email",
-    icon: <FaEnvelope />,
+    icon: (className?: string) => <FaEnvelope className={cn(className)} />,
   },
 ];
 
-export function getIcon(iconLabel: string): JSX.Element {
-  return Array.from(icons).filter((icon) => icon.label === iconLabel)[0].icon;
+export function getIcon(iconLabel: string, className?: string): JSX.Element {
+  return Array.from(icons).filter((icon) => icon.label === iconLabel)[0].icon(className);
 }
 
 export default icons;
