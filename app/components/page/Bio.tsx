@@ -6,8 +6,7 @@ export default async function Bio() {
 
     return <div className="mx-auto min-h-screen flex justify-center items-start flex-col">
         <Title className="font-semibold">About Me</Title>
-        <p>
-            {about}
-        </p>
+        <div dangerouslySetInnerHTML={{ __html: about }}>
+        </div>
     </div>;
 }
