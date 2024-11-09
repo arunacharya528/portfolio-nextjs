@@ -2,6 +2,7 @@ import Title from "../Title";
 import {
   formatExperienceDate,
   getDifferenceOfExperienceDates,
+  getTotalWorkExperience,
 } from "@/app/lib/Date";
 import Retriever from "@/app/lib/Retriever";
 import { Timeline } from "@/components/ui/timeline";
@@ -21,7 +22,7 @@ export default async function Experience() {
           experience.duration.to
         )})`,
         content: <section className="">
-          <div className="text-xl font-bold">Organization: {experience.company}</div>
+          <div className="text-md font-bold">Organization: <span className="text-xl">{experience.company}</span></div>
           <h3 className="font-semibold mb-5">{experience.title}</h3>
 
           {experience.responsibilities.map((responsibility, index) => (
@@ -32,6 +33,6 @@ export default async function Experience() {
 
       }))}
         title="My Involvements"
-        subTitle="I have been involved in backend development for the last 3 Years." />
+        subTitle={`I have been involved in backend development for the last ${getTotalWorkExperience(experiences)}.` }/>
   );
 }

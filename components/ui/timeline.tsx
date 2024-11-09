@@ -40,7 +40,7 @@ export const Timeline = ({ data, title, subTitle }: { data: TimelineEntry[], tit
     >
       <div className="mx-auto py-10">
         <Title className="font-semibold">{title}</Title>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-lg text-balance">
+        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-3xl text-balance">
           {subTitle}
         </p>
       </div>
